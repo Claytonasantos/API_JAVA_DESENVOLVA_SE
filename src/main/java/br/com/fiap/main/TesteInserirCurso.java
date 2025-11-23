@@ -20,6 +20,7 @@ public class TesteInserirCurso {
         objCurso.setNome_curso(texto("Nome do curso"));
         objCurso.setArea(texto("Area do curso"));
         objCurso.setDuracao(inteiro("Duração"));
+        objCurso.setLink_curso(texto("Link do curso"));
 
         System.out.println(cursoDAO.inserirCurso(objCurso));
     }

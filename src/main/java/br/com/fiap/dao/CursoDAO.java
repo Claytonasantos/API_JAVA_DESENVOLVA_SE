@@ -18,12 +18,13 @@ public class CursoDAO {
     // INSERT
     public String inserirCurso(Curso curso) throws SQLException {
         PreparedStatement stmt = minhaConexao.prepareStatement(
-                "INSERT INTO cursos (nome_curso, area, duracao) VALUES (?, ?, ?)"
+                "INSERT INTO cursos (nome_curso, area, duracao, link_curso) VALUES (?, ?, ?, ?)"
         );
 
         stmt.setString(1, curso.getNome_curso());
         stmt.setString(2, curso.getArea());
         stmt.setInt(3, curso.getDuracao());
+        stmt.setString(4, curso.getLink_curso());
 
         stmt.execute();
         stmt.close();
@@ -47,13 +48,14 @@ public class CursoDAO {
     // UPDATE
     public String atualizarCurso(Curso curso) throws SQLException {
         PreparedStatement stmt = minhaConexao.prepareStatement(
-                "UPDATE cursos SET nome_curso = ?, area = ?, duracao = ? WHERE id_curso = ?"
+                "UPDATE cursos SET nome_curso = ?, area = ?, duracao = ?, link_curso = ? WHERE id_curso = ?"
         );
 
         stmt.setString(1, curso.getNome_curso());
         stmt.setString(2, curso.getArea());
         stmt.setInt(3, curso.getDuracao());
-        stmt.setInt(4, curso.getId_curso());
+        stmt.setString(4, curso.getLink_curso());
+        stmt.setInt(5, curso.getId_curso());
 
         stmt.executeUpdate();
         stmt.close();
@@ -66,7 +68,7 @@ public class CursoDAO {
         ArrayList<Curso> lista = new ArrayList<>();
 
         PreparedStatement stmt = minhaConexao.prepareStatement(
-                "SELECT id_curso, nome_curso, area, duracao FROM cursos"
+                "SELECT id_curso, nome_curso, area, duracao, link_curso FROM cursos"
         );
 
         ResultSet rs = stmt.executeQuery();
@@ -77,6 +79,7 @@ public class CursoDAO {
             objCurso.setNome_curso(rs.getString(2));
             objCurso.setArea(rs.getString(3));
             objCurso.setDuracao(rs.getInt(4));
+            objCurso.setLink_curso(rs.getString(5));
             lista.add(objCurso);
         }
 

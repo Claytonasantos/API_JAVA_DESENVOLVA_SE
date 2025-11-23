@@ -20,6 +20,7 @@ public class TesteAtualizarCurso {
         objCurso.setNome_curso(texto("Novo nome do curso"));
         objCurso.setArea(texto("Nova área"));
         objCurso.setDuracao(inteiro("Nova duração"));
+        objCurso.setLink_curso(texto("Link do curso"));
 
         System.out.println(cursoDAO.atualizarCurso(objCurso));
     }
